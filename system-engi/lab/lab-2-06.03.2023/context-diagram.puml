@@ -1,0 +1,36 @@
+@startuml homecontext
+title Smart Home Context Diagram
+
+actor User as U
+
+rectangle "Smart Home System" as sys
+rectangle "Motion sensors" as msen
+rectangle "Light switches" as light
+rectangle "Temprature sensors" as tsen
+rectangle "Security alarm" as alarm
+rectangle "Smart appliances" as appli
+rectangle "Air conditioners" as condi
+rectangle "Food delivery company" as food
+rectangle "Locks" as lock
+
+sys --> condi : controls
+
+sys --> appli : controls
+
+U --> sys : controls
+
+sys --> light : controls
+
+sys --> lock : controls
+
+msen --> sys : data
+
+tsen --> sys : data
+
+sys --> alarm : controls
+
+sys --> food : controls
+
+food --> sys : materials
+
+@enduml
