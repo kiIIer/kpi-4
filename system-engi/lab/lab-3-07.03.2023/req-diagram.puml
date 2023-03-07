@@ -73,4 +73,21 @@ object "<block> \n Alarm system" as alarm
 
 security <.. secr3 : Derive
 secr3 <.. alarm : Provides
+
+object "<req> \n Prepare morning coffee" as coffee {
+    "requirement"
+    id = c1
+    Text = "Make coffee when residents wake up"
+}
+
+object "<req> \n Prepare coffee" as cr1
+object "<block> \n Smart coffee maker" as coffeeMaker
+
+coffee <.. cr1 : Derive
+cr1 <.. coffeeMaker : Provides
+
+object "<req> \n Know wake up time" as cr2
+
+coffee <.. cr2 : Derive
+cr2 <.. phone : Provides
 @enduml
