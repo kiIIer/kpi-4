@@ -97,7 +97,7 @@ object "<req> \n Prepare evening tea" as tea {
     Text = "Make tea when resident comes home \n or at 5PM if he is already present"
 }
 
-object "<req> \n Prepare tea" as tr1 
+object "<req> \n Prepare tea" as tr1
 
 tea <.. tr1 : Derive
 tr1 <.. drinker : Provides
@@ -111,13 +111,13 @@ object "<req> \n Maintain enough selected food" as food {
     Text = "Automatically order food when it runs out, \n receive special requests from residents"
 }
 
-object "<req> \n Know what food is remeining" as fr1 
+object "<req> \n Know what food is remeining" as fr1
 object "<block> \n Smart fridge" as fridge
 
 food <.. fr1 : Derive
 fr1 <.. fridge : Provides
 
-object "<req> \n Know what food residents want" as fr2 
+object "<req> \n Know what food residents want" as fr2
 
 food <.. fr2 : Derive
 fr2 <.. phone : Provides
@@ -127,4 +127,18 @@ object "<block> \n Food delivery company" as foodD
 
 food <.. fr3 : Derive
 fr3 <.. foodD : Provides
+
+object "<Test case> \n Security control test" as t1
+object "<Test case> \n Food test" as t2
+object "<Test case> \n Coffee test" as t3
+object "<Test case> \n Tea test" as t4
+object "<Test case> \n Temperature test" as t5
+object "<Test case> \n Lights test test" as t6
+
+t6 -->  light: Verifies
+t5 -->  temperature: Verifies
+t4 -->  tea: Verifies
+t3 -->  coffee: Verifies
+t2 -->  food: Verifies
+t1 -->  security: Verifies
 @enduml
