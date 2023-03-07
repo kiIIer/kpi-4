@@ -1,0 +1,26 @@
+@startuml requirements
+object "<req> \n Lights control" as light{
+    "requirement"
+    id = l1
+    Text = "The lights should turn on \n when someone enters room before no-light time"
+}
+
+object "<req> \n Know if someone is present" as lir1
+object "<block> \n Motion sensor" as motionS
+
+light <.. lir1 : Derive
+lir1 <.. motionS : Provides
+
+object "<req> \n Know time" as lir2
+object "<block> \n Clock" as clock
+
+light <.. lir2 : Derive
+lir2 <.. clock : Provides
+
+object "<req> \n Control lights" as lir3
+object "<block> \n Light switch" as LSwitch
+
+light <.. lir3 : Derive
+lir3 <.. LSwitch : Provides
+
+@enduml
