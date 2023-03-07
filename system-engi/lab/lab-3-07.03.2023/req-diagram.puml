@@ -81,13 +81,50 @@ object "<req> \n Prepare morning coffee" as coffee {
 }
 
 object "<req> \n Prepare coffee" as cr1
-object "<block> \n Smart coffee maker" as coffeeMaker
+object "<block> \n Smart drink maker" as drinker
 
 coffee <.. cr1 : Derive
-cr1 <.. coffeeMaker : Provides
+cr1 <.. drinker : Provides
 
 object "<req> \n Know wake up time" as cr2
 
 coffee <.. cr2 : Derive
 cr2 <.. phone : Provides
+
+object "<req> \n Prepare evening tea" as tea {
+    "requirement"
+    id = t1
+    Text = "Make tea when resident comes home \n or at 5PM if he is already present"
+}
+
+object "<req> \n Prepare tea" as tr1 
+
+tea <.. tr1 : Derive
+tr1 <.. drinker : Provides
+
+tea <.. secr1 : Derive
+tea <.. lir2 : Derive
+
+object "<req> \n Maintain enough selected food" as food {
+    "requirement"
+    id = f1
+    Text = "Automatically order food when it runs out, \n receive special requests from residents"
+}
+
+object "<req> \n Know what food is remeining" as fr1 
+object "<block> \n Smart fridge" as fridge
+
+food <.. fr1 : Derive
+fr1 <.. fridge : Provides
+
+object "<req> \n Know what food residents want" as fr2 
+
+food <.. fr2 : Derive
+fr2 <.. phone : Provides
+
+object "<req> \n Order food" as fr3
+object "<block> \n Food delivery company" as foodD
+
+food <.. fr3 : Derive
+fr3 <.. foodD : Provides
 @enduml
