@@ -1,4 +1,6 @@
 @startuml requirements
+left to right direction
+
 object "<req> \n Lights control" as light{
     "requirement"
     id = l1
@@ -23,4 +25,52 @@ object "<block> \n Light switch" as LSwitch
 light <.. lir3 : Derive
 lir3 <.. LSwitch : Provides
 
+object "<req> \n Maintain tempreture" as temperature {
+    "requirement"
+    id = t1
+    Text = "User sets temperature \n and system maintains it"
+}
+
+object "<req> \n Know temperature" as temr1
+object "<block> \n Temperature sensor" as TSensor
+
+temperature <.. temr1 : Derive
+temr1 <.. TSensor : Provides
+
+object "<req> \n Control temperature" as temr2
+object "<block> \n AC" as ac
+object "<block> \n Heating system" as heating
+
+temperature <.. temr2 : Derive
+temr2 <.. ac : Provides
+temr2 <.. heating : Provides
+
+object "<req> \n Set temperature" as temr3
+object "<block> \n Phone app" as phone
+
+temperature <.. temr3 : Derive
+temr3 <.. phone : Provides
+
+object "<req> \n Security control" as security{
+    "requirement"
+    id = s1
+    Text = "Disable alarm and open front doors \n when residents arrive"
+}
+
+object "<req> \n Know residents location" as secr1
+
+security <.. secr1 : Derive
+secr1 <.. phone : Provides
+
+object "<req> \n Open front door" as secr2
+object "<block> \n Automatic door" as door
+
+security <.. secr2 : Derive
+secr2 <.. door : Provides
+
+object "<req> \n Turn alarm off and on" as secr3
+object "<block> \n Alarm system" as alarm
+
+security <.. secr3 : Derive
+secr3 <.. alarm : Provides
 @enduml
