@@ -1,0 +1,144 @@
+@startuml requirements
+left to right direction
+
+object "<req> \n Lights control" as light{
+    "requirement"
+    id = l1
+    Text = "The lights should turn on \n when someone enters room before no-light time"
+}
+
+object "<req> \n Know if someone is present" as lir1
+object "<block> \n Motion sensor" as motionS
+
+light <.. lir1 : Derive
+lir1 <.. motionS : Provides
+
+object "<req> \n Know time" as lir2
+object "<block> \n Clock" as clock
+
+light <.. lir2 : Derive
+lir2 <.. clock : Provides
+
+object "<req> \n Control lights" as lir3
+object "<block> \n Light switch" as LSwitch
+
+light <.. lir3 : Derive
+lir3 <.. LSwitch : Provides
+
+object "<req> \n Maintain tempreture" as temperature {
+    "requirement"
+    id = t1
+    Text = "User sets temperature \n and system maintains it"
+}
+
+object "<req> \n Know temperature" as temr1
+object "<block> \n Temperature sensor" as TSensor
+
+temperature <.. temr1 : Derive
+temr1 <.. TSensor : Provides
+
+object "<req> \n Control temperature" as temr2
+object "<block> \n AC" as ac
+object "<block> \n Heating system" as heating
+
+temperature <.. temr2 : Derive
+temr2 <.. ac : Provides
+temr2 <.. heating : Provides
+
+object "<req> \n Set temperature" as temr3
+object "<block> \n Phone app" as phone
+
+temperature <.. temr3 : Derive
+temr3 <.. phone : Provides
+
+object "<req> \n Security control" as security{
+    "requirement"
+    id = s1
+    Text = "Disable alarm and open front doors \n when residents arrive"
+}
+
+object "<req> \n Know residents location" as secr1
+
+security <.. secr1 : Derive
+secr1 <.. phone : Provides
+
+object "<req> \n Open front door" as secr2
+object "<block> \n Automatic door" as door
+
+security <.. secr2 : Derive
+secr2 <.. door : Provides
+
+object "<req> \n Turn alarm off and on" as secr3
+object "<block> \n Alarm system" as alarm
+
+security <.. secr3 : Derive
+secr3 <.. alarm : Provides
+
+object "<req> \n Prepare morning coffee" as coffee {
+    "requirement"
+    id = c1
+    Text = "Make coffee when residents wake up"
+}
+
+object "<req> \n Prepare coffee" as cr1
+object "<block> \n Smart drink maker" as drinker
+
+coffee <.. cr1 : Derive
+cr1 <.. drinker : Provides
+
+object "<req> \n Know wake up time" as cr2
+
+coffee <.. cr2 : Derive
+cr2 <.. phone : Provides
+
+object "<req> \n Prepare evening tea" as tea {
+    "requirement"
+    id = t1
+    Text = "Make tea when resident comes home \n or at 5PM if he is already present"
+}
+
+object "<req> \n Prepare tea" as tr1
+
+tea <.. tr1 : Derive
+tr1 <.. drinker : Provides
+
+tea <.. secr1 : Derive
+tea <.. lir2 : Derive
+
+object "<req> \n Maintain enough selected food" as food {
+    "requirement"
+    id = f1
+    Text = "Automatically order food when it runs out, \n receive special requests from residents"
+}
+
+object "<req> \n Know what food is remeining" as fr1
+object "<block> \n Smart fridge" as fridge
+
+food <.. fr1 : Derive
+fr1 <.. fridge : Provides
+
+object "<req> \n Know what food residents want" as fr2
+
+food <.. fr2 : Derive
+fr2 <.. phone : Provides
+
+object "<req> \n Order food" as fr3
+object "<block> \n Food delivery company" as foodD
+
+food <.. fr3 : Derive
+fr3 <.. foodD : Provides
+
+object "<Test case> \n Security control test" as t1
+object "<Test case> \n Food test" as t2
+object "<Test case> \n Coffee test" as t3
+object "<Test case> \n Tea test" as t4
+object "<Test case> \n Temperature test" as t5
+object "<Test case> \n Lights test test" as t6
+
+t6 -->  light: Verifies
+t5 -->  temperature: Verifies
+t4 -->  tea: Verifies
+t3 -->  coffee: Verifies
+t2 -->  food: Verifies
+t1 -->  security: Verifies
+@enduml
