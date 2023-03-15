@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 
 def run():
     # Read Excel file
-    df = pd.read_excel('./assets/nkzp_Ukr 18-20ue.xlsx')
+    df = pd.read_excel('./data/data.xlsx')
 
     # Calculate and show statistics
     print(df.describe)
     print(df.columns)
 
+    # Show histogram
     df.hist(bins=10, figsize=(20, 10))
     plt.show()
