@@ -15,3 +15,8 @@ print(df.tail())
 print(df.columns)
 df.rename(columns={df.columns[-1]: 'class'}, inplace=True)
 print(df.columns)
+
+# Simple data analytics
+
+min_row = df.loc[df['age'].idxmin()]
+print(min_row)
