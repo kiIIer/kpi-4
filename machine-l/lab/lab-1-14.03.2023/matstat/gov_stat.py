@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 def run():
     # Read Excel file
     df = pd.read_excel('./data/gov_data.xlsx')
+    df.dropna(inplace=True)
 
     # Calculate and show statistics
     print(df.mean())
