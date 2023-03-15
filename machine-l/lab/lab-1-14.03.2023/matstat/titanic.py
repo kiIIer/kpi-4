@@ -10,3 +10,8 @@ pd.set_option('precision', 2)
 # View part of dataset
 print(df.head())
 print(df.tail())
+
+# Rename column
+print(df.columns)
+df.rename(columns={df.columns[-1]: 'class'}, inplace=True)
+print(df.columns)
