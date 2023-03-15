@@ -55,4 +55,6 @@ DataFrame бібліотеки pandas
 Виглядає вже непогано  
 ![not bad gov_data preview](matstat/assets/not%20bad%20gov-data.png)
 
-Тепер виконуємо завдання зі статистики
+Тепер виконуємо завдання зі статистики. Використовуємо стандартні методи pandas та виводимо їх до stdout
+Ось що вийшло:
+![gov_stat](matstat/assets/gov_stat.png)

@@ -15,8 +15,18 @@ def run():
     df.set_index('Year', inplace=True)
 
     # Calculate and show statistics
-    print(df)
-    # print(df.mean())
+
+    print("-----MEAN-----")
+    print(df.mean())
+
+    print("-----MODE-----")
+    print(df.mode())
+
+    print("-----VARIANCES-----")
+    print(df.var())
+
+    print("-----STD_DEVS-----")
+    print(df.std())
 
     # Show histogram
     # df.hist(bins=10, figsize=(20, 10))
