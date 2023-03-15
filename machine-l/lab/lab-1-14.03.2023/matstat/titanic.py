@@ -1,66 +1,68 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-scv_url = 'https://vincentarelbundock.github.io/Rdatasets/csv/carData/TitanicSurvival.csv'
 
-df = pd.read_csv(scv_url)
+def run():
+    scv_url = 'https://vincentarelbundock.github.io/Rdatasets/csv/carData/TitanicSurvival.csv'
 
-pd.set_option('precision', 2)
+    df = pd.read_csv(scv_url)
 
-# View part of dataset
-print(df.head())
-print(df.tail())
+    pd.set_option('precision', 2)
 
-# Rename column
-print(df.columns)
-df.rename(columns={df.columns[-1]: 'class'}, inplace=True)
-print(df.columns)
+    # View part of dataset
+    print(df.head())
+    print(df.tail())
 
-# Simple data analytics
+    # Rename column
+    print(df.columns)
+    df.rename(columns={df.columns[-1]: 'class'}, inplace=True)
+    print(df.columns)
 
-# Min
-min_row = df.loc[df['age'].idxmin()]
-print("-----Youngest person-----")
-print(min_row)
+    # Simple data analytics
 
-# Max
-max_row = df.loc[df['age'].idxmax()]
-print("-----Oldest person-----")
-print(max_row)
+    # Min
+    min_row = df.loc[df['age'].idxmin()]
+    print("-----Youngest person-----")
+    print(min_row)
 
-# Average
-average_age = df.T.loc['age'].mean()
-print("-----Average Age-----")
-print(average_age)
+    # Max
+    max_row = df.loc[df['age'].idxmax()]
+    print("-----Oldest person-----")
+    print(max_row)
 
-# Stuff with women
+    # Average
+    average_age = df.T.loc['age'].mean()
+    print("-----Average Age-----")
+    print(average_age)
 
-# first class women
-women_in_first_class = df[(df['sex'] == 'female') & (df['class'] == '1st')]
-print("-----First class girls-----")
-print(women_in_first_class)
+    # Stuff with women
 
-# Youngest girl
-youngest_woman = women_in_first_class['age'].min()
-print("-----Fbi plz don't open up i didn't know her age-----")
-print(youngest_woman)
+    # first class women
+    women_in_first_class = df[(df['sex'] == 'female') & (df['class'] == '1st')]
+    print("-----First class girls-----")
+    print(women_in_first_class)
 
-# More mature girl
-oldest_woman = women_in_first_class['age'].max()
-print("-----Mature woman-----")
-print(oldest_woman)
+    # Youngest girl
+    youngest_woman = women_in_first_class['age'].min()
+    print("-----Fbi plz don't open up i didn't know her age-----")
+    print(youngest_woman)
 
-# How many are still alive
-survived_count = women_in_first_class['survived'].replace({'yes': 1, 'no': 0}).sum()
-print("-----How many survived-----")
-print(survived_count)
+    # More mature girl
+    oldest_woman = women_in_first_class['age'].max()
+    print("-----Mature woman-----")
+    print(oldest_woman)
 
-# drawing histogram of age
-plt.hist(df['age'], bins=50)
+    # How many are still alive
+    survived_count = women_in_first_class['survived'].replace({'yes': 1, 'no': 0}).sum()
+    print("-----How many survived-----")
+    print(survived_count)
 
-# Let's add some labels, so it'll be a bit easier to read
-plt.title('Age Distribution')
-plt.xlabel('Age')
-plt.ylabel('Count')
+    # drawing histogram of age
+    plt.hist(df['age'], bins=50)
 
-plt.savefig('age.png')
+    # Let's add some labels, so it'll be a bit easier to read
+    plt.title('Age Distribution')
+    plt.xlabel('Age')
+    plt.ylabel('Count')
+
+    plt.savefig('age.png')
