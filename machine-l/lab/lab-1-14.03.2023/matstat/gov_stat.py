@@ -22,6 +22,9 @@ def run():
     print("-----MODE-----")
     print(df.mode())
 
+    print("-----MEDIAN-----")
+    print(df.median())
+
     print("-----VARIANCES-----")
     print(df.var())
 
@@ -29,5 +32,5 @@ def run():
     print(df.std())
 
     # Show histogram
-    # df.hist(bins=10, figsize=(20, 10))
-    plt.show()
+    df.hist(figsize=(20, 10))
+    plt.savefig('gov_hist.png')
