@@ -5,6 +5,7 @@
 ; Author : killer
 ;
 
+; task 1
 LDI R16, 0x1F
 CP R19, R16
 BRCS L1
@@ -16,7 +17,9 @@ L1:
 IN R22, SREG
 
 L2:
+nop
 
+; task 2
 ldi r22, 22
 ldi r23, 23
 ldi r24, 24

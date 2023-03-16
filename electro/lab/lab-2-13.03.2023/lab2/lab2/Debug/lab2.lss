@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm Mon Mar 13 23:22:42 2023
+AVRASM ver. 2.2.8  Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm Thu Mar 16 09:40:36 2023
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m64Adef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m64Adef.inc'
@@ -1232,6 +1232,7 @@ AVRASM ver. 2.2.8  Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm
                                  ; Author : killer
                                  ;
                                  
+                                 ; task 1
 000000 e10f                      LDI R16, 0x1F
 000001 1730                      CP R19, R16
 000002 f010                      BRCS L1
@@ -1243,26 +1244,28 @@ AVRASM ver. 2.2.8  Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm
 000005 b76f                      IN R22, SREG
                                  
                                  L2:
+000006 0000                      nop
                                  
-000006 e166                      ldi r22, 22
-000007 e177                      ldi r23, 23
-000008 e188                      ldi r24, 24
+                                 ; task 2
+000007 e166                      ldi r22, 22
+000008 e177                      ldi r23, 23
+000009 e188                      ldi r24, 24
                                  
-000009 b70f                      IN R16, SREG
+00000a b70f                      IN R16, SREG
                                  
-00000a fd50                      SBRC R21, 0          
-00000b c004                      RJMP COPY_SEQ_1
+00000b fd50                      SBRC R21, 0          
+00000c c004                      RJMP COPY_SEQ_1
                                  
                                  
-00000c 2ec6                          MOV R12, R22
-00000d 2ed7                          MOV R13, R23
-00000e 2ee8                          MOV R14, R24
-00000f c003                          RJMP COPY_SEQ_END
+00000d 2ec6                          MOV R12, R22
+00000e 2ed7                          MOV R13, R23
+00000f 2ee8                          MOV R14, R24
+000010 c003                          RJMP COPY_SEQ_END
                                  
                                  COPY_SEQ_1:
-000010 2d6c                          MOV R22, R12
-000011 2d7d                          MOV R23, R13
-000012 2d8e                          MOV R24, R14
+000011 2d6c                          MOV R22, R12
+000012 2d7d                          MOV R23, R13
+000013 2d8e                          MOV R24, R14
                                  
 
 
@@ -1301,19 +1304,19 @@ cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   0 jmp   :   0 
 ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   6 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   0 pop   :   0 
+neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :   0 pop   :   0 
 push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   3 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   1 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 7 out of 113 (6.2%)
+Instructions used: 8 out of 113 (7.1%)
 
 "ATmega64A" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000026     38      0     38   65536   0.1%
+[.cseg] 0x000000 0x000028     40      0     40   65536   0.1%
 [.dseg] 0x000100 0x000100      0      0      0    4096   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    2048   0.0%
 
