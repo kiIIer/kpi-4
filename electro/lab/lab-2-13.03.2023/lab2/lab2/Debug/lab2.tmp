@@ -22,9 +22,9 @@
   <FILE>lab2.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <L1><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>15</LINE></L1>
-  <L2><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>18</LINE></L2>
-  <COPY_SEQ_1><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>35</LINE></COPY_SEQ_1>
-  <COPY_SEQ_END><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>40</LINE></COPY_SEQ_END>
+  <L1><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>16</LINE></L1>
+  <L2><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>19</LINE></L2>
+  <COPY_SEQ_1><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>38</LINE></COPY_SEQ_1>
+  <COPY_SEQ_END><FILE>Y:\proj\kpi-4\electro\lab\lab-2-13.03.2023\lab2\lab2\main.asm</FILE><LINE>43</LINE></COPY_SEQ_END>
  </LABELS>
 </ASSEMBLER_INFO>
