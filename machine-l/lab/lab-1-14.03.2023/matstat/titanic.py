@@ -65,4 +65,4 @@ def run():
     plt.xlabel('Age')
     plt.ylabel('Count')
 
-    plt.savefig('age.png')
+    plt.show()
