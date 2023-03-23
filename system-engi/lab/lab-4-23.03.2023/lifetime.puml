@@ -1,0 +1,41 @@
+@startuml lifetime
+
+agent "1 Smart House System" as m
+
+agent "1.1 \n Initialazation" as 1
+m -- 1
+
+agent "1.1.1 \n Concept development" as 11
+1 -- 11
+
+agent "1.1.2 \n Obtaining blueprints" as 12
+1 -- 12
+
+agent "1.2 \n Development" as 2
+m -- 2
+
+agent "1.2.1 \n Blueprint modification" as 21
+2 -- 21
+
+agent "1.2.2 \n Control unit soft creation" as 22
+2 -- 22
+
+agent "1.2.3 \n Phone app creation" as 23
+2 -- 23
+
+agent "1.3 \n Implementation" as 3
+m -- 3
+
+agent "1.3.1 \n Material and device purchase" as 31
+3 -- 31
+
+agent "1.3.2 \n Device setup" as 32
+3 -- 32
+
+agent "1.3.3 \n Device connection and insertion" as 33
+3 -- 33
+
+agent "1.4 Usage" as 4
+m -- 4
+
+@enduml
