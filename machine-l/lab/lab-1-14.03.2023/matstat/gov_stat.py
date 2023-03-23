@@ -33,16 +33,16 @@ def run():
 
     # Show histogram
     df.hist(figsize=(20, 10))
-    plt.savefig('gov_hist.png')
+    plt.show()
 
     # Get row wit loc
-    test_row = df.loc['2018']
+    test_row = df.loc[2018]
 
     # Get row with iloc
     test_row = df.iloc[0]
 
     # Get cell with names
-    cell = df.at['2018', 'total']
+    cell = df.at[2018, 'Total']
 
     # cell but with iat
-    cell = df.at[0, 0]
+    cell = df.iat[0, 0]
