@@ -1,0 +1,74 @@
+@startuml product
+
+agent "1 Smart House System" as m
+
+agent "1.1 \n Building" as 1
+m -- 1
+
+agent "1.1.1 \n Building schematics" as 11
+1 -- 11
+
+agent "1.2 \n Wiring" as 2
+m -- 2
+
+agent "1.2.1 \n Materials" as 21
+2 -- 21
+
+agent "1.2.2 \n Power sockets" as 22
+2 -- 22
+
+agent "1.2.3 \n Wires in place" as 23
+2 -- 23
+
+agent "1.3 \n Sensors" as 3
+m -- 3
+
+agent "1.3.1 \n Sensors chosen" as 31
+3 -- 31
+
+agent "1.3.2 \n Connected sensors" as 32
+3 -- 32
+
+agent "1.3.3 \n Inserted sensors" as 33
+3 -- 33
+
+agent "1.4 \n Smart devices" as 4
+m -- 4
+
+agent "1.4.1 \n Devices chosen" as 41
+4 -- 41
+
+agent "1.4.2 \n Setup" as 42
+4 -- 42
+
+agent "1.4.3 \n Connection to wiring" as 43
+4 -- 43
+
+agent "1.5 \n Control unit" as 5
+m -- 5
+
+agent "1.5.1 \n Software written" as 51
+5 -- 51
+
+agent "1.5.2 \n Hardware chosen" as 52
+5 -- 52
+
+agent "1.5.3 \n Hardware connected" as 53
+5 -- 53
+
+agent "1.6 \n Phone application" as 6
+m -- 6
+
+agent "1.6.1 \n Software written" as 61
+6 -- 61
+
+agent "1.6.2 \n Installation" as 62
+6 -- 62
+
+agent "1.6.3 \n Registration" as 63
+6 -- 63
+
+agent "1.6.4 \n Setup" as 64
+6 -- 64
+
+@enduml
