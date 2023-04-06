@@ -1,0 +1,100 @@
+@startuml block
+
+component Notes #blue {
+    note "PD = provides data" as N1
+    note "D = depends" as N2
+    note "IP = is part" as N3
+}
+
+[Smart house system] as sh
+
+[Control unit] as cu
+
+[Raspberry Pi] as rp
+[Wireing] as wi
+
+cu --> sh : IP
+rp --> cu : IP
+wi --> cu : IP
+
+[Lights] as l
+
+l --> sh : IP
+
+[Front door] as fd
+
+fd --> sh : IP
+
+[Light switches] as ls
+
+ls --> l : IP
+
+[Light connector] as lc
+
+lc --> l : IP
+
+[Door motor] as dm
+
+dm --> fd : IP
+
+[Door connector] as dc
+
+dc --> fd : IP
+
+l --> cu :D
+fd --> cu :D
+
+[Detectors] as detec
+detec --> sh : IP
+
+[Motion detectors] as md
+
+md --> detec : IP
+
+[Temperature detectors] as td
+
+td --> detec : IP
+
+cu --> detec : D
+detec --> cu : PD
+
+cu --> l : PD
+cu --> fd : PD
+
+[Phone app] as pa
+
+pa --> sh : IP
+
+cu --> pa : D
+pa --> cu : PD
+
+[Smart appliances] as sa
+
+sa --> sh : IP
+
+sa --> cu : PD
+cu --> sa : PD
+
+[Smart fridge] as sf
+
+sf --> sa : IP
+
+[Brewing machine] as bm
+
+bm --> sa : IP
+
+[Security subsystem] as ss
+
+ss --> sh : IP
+
+cu --> ss : PD
+
+[AC system] as ac
+
+ac --> sh : IP
+
+ac --> cu :D
+
+cu --> ac : PD
+
+@enduml
