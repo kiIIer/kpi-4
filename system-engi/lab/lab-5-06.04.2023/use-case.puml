@@ -1,0 +1,30 @@
+@startuml use-case
+
+left to right direction
+
+actor Resident as r
+
+package "Smart House" as h {
+    usecase "Reseive coffee" as uc1
+    usecase "Reseive tea" as uc2
+    usecase "Set temperature" as uc3
+    usecase "Set required food" as uc4
+    usecase "Reseive food" as uc5
+    usecase "Having front door opened" as uc6
+    usecase "Having lights controled" as uc7
+    usecase "Deliver food" as uc8
+}
+
+r --> uc1
+r --> uc2
+r --> uc3
+r --> uc4
+r --> uc5
+r --> uc6
+r --> uc7
+
+actor "Delivery Guy" as d
+
+d --> uc8
+
+@enduml
