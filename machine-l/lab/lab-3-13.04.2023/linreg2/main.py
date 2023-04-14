@@ -1,6 +1,9 @@
+import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import seaborn as sns
 
 df = pd.read_csv(
     'https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/national/time-series/110/tavg/1/1/1895-2018.csv')
@@ -42,3 +45,12 @@ predict = (lambda x: linear_regression.coef_ * x + linear_regression.intercept_)
 print(predict(2019))
 print(predict(1890))
 
+axes = sns.scatterplot(data=df, x='Date', y='Temperature', hue='Temperature', palette='winter', legend=False)
+axes.set_ylim(10, 70)
+
+x = np.array([min(df.Date.values), max(df.Date.values)])
+y = predict(x)
+
+line = plt.plot(x, y)
+
+plt.show()
