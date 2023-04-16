@@ -1,4 +1,6 @@
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
@@ -45,5 +47,29 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
 svm = SVC(kernel='rbf', random_state=1, gamma=0.10, C=10.0)
 svm.fit(X_xor, Y_xor)
 plot_decision_regions(X_xor, Y_xor, classifier=svm)
+plt.legend(loc='upper left')
+plt.show()
+
+lin = SVC(kernel='linear', random_state=1, gamma=0.10, C=10.0)
+lin.fit(X_xor, Y_xor)
+plot_decision_regions(X_xor, Y_xor, classifier=lin)
+plt.legend(loc='upper left')
+plt.show()
+
+poly = SVC(kernel='poly', random_state=1)
+poly.fit(X_xor, Y_xor)
+plot_decision_regions(X_xor, Y_xor, classifier=poly)
+plt.legend(loc='upper left')
+plt.show()
+
+knei = KNeighborsClassifier()
+knei.fit(X_xor, Y_xor)
+plot_decision_regions(X_xor, Y_xor, classifier=knei)
+plt.legend(loc='upper left')
+plt.show()
+
+gauss = GaussianNB()
+gauss.fit(X_xor, Y_xor)
+plot_decision_regions(X_xor, Y_xor, classifier=gauss)
 plt.legend(loc='upper left')
 plt.show()
