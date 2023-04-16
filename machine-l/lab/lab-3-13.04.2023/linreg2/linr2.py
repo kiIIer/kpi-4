@@ -28,7 +28,7 @@ print(y_train.shape)
 
 linear_regression = LinearRegression()
 
-linear_regression.fit(X_train, y_train)
+linear_regression.fit(X_train, X_test)
 
 print(linear_regression.coef_)
 print(linear_regression.intercept_)
