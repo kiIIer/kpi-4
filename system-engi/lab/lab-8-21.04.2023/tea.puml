@@ -1,0 +1,17 @@
+@startuml tea
+
+participant Resident
+
+Resident --> Phone : "Set desired time"
+Phone --> ControlUnit : "Create task"
+ControlUnit --> ControlUnit : "The time has come"
+activate ControlUnit
+ControlUnit --> Brewer : "Do the tea"
+activate Brewer
+Brewer --> Brewer : "Brew"
+Brewer --> ControlUnit : "Tea done"
+deactivate Brewer
+deactivate ControlUnit
+ControlUnit --> Resident : "The tea has been completed, your highness."
+
+@enduml

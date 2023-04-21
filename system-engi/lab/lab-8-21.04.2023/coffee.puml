@@ -1,0 +1,17 @@
+@startuml coffee
+
+participant Resident
+
+Resident --> Phone : "Set desired time"
+Phone --> ControlUnit : "Create task"
+ControlUnit --> ControlUnit : "The time has come"
+activate ControlUnit
+ControlUnit --> Brewer : "Do the coffee"
+activate Brewer
+Brewer --> Brewer : "Brew"
+Brewer --> ControlUnit : "Coffee done"
+deactivate Brewer
+deactivate ControlUnit
+ControlUnit --> Resident : "The coffee has been completed, your highness."
+
+@enduml
