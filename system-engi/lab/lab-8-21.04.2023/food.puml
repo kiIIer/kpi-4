@@ -1,0 +1,16 @@
+@startuml food
+
+participant Resident
+
+Resident --> Phone : "Food list"
+Phone --> ControlUnit : "Food data"
+ControlUnit --> SmartFridge : "What do you have?"
+SmartFridge --> ControlUnit : "Current food"
+ControlUnit --> OnlineShopSilpo : "Place order"
+activate OnlineShopSilpo
+OnlineShopSilpo --> OnlineShopSilpo : "Complete order"
+OnlineShopSilpo --> Resident : "Deliver order"
+deactivate OnlineShopSilpo
+Resident --> SmartFridge : "Place food"
+
+@enduml

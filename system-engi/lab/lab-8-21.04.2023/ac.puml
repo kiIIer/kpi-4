@@ -1,0 +1,13 @@
+@startuml ac
+
+participant Resident
+
+Resident --> Phone : "Set desired temperature"
+Phone --> ControlUnit : "Deliver temperature"
+ControlUnit --> Sensors : "Request temperature"
+Sensors --> ControlUnit : "Current temperature"
+ControlUnit --> AC : "Update temperature"
+activate AC
+AC --> AC : "WORK"
+
+@enduml

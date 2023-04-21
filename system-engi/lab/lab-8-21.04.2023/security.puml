@@ -1,0 +1,14 @@
+@startuml security
+
+participant Resident
+
+ControlUnit --> Sensors : "Gimme data"
+Sensors --> ControlUnit : "There you go"
+ControlUnit --> Phone : "Where are you?"
+Phone --> ControlUnit : "Here"
+ControlUnit --> Police : "There is somebody in the house"
+Police --> ControlUnit : "We are cuming"
+ControlUnit --> Phone : "Somebody is in the house, police is on it's way"
+Phone --> Resident : "There is something going on"
+
+@enduml

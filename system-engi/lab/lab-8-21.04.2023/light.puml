@@ -1,0 +1,8 @@
+@startuml light
+
+ControlUnit --> Sensors : "Request presence"
+Sensors --> ControlUnit : "Data"
+ControlUnit --> LightControl : "Turn on/off"
+LightControl --> ControlUnit : "Ok"
+
+@enduml
