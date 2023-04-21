@@ -1,0 +1,55 @@
+@startuml "acactivity diagram"
+
+(*) --> "Get data from phone" as s
+if "Armagedon?" then
+-->[true] (*)
+else
+-->[false] "Ok"
+endif
+if "Anything to do now?" then
+-->[true] "Choose timed activity"
+if "Choose" then
+-->["Coffee"] "Send brewer command to make coffee"
+--> "Receive confirmation"
+--> ===ALL===
+else
+-->["Tea"] "Send brewer command to make tea"
+--> "Receive confirmation"
+endif
+else
+-->[false] "Choose basic activity"
+if "Choose" then
+-->["Lights"] "Get motion data from sensors"
+-->"Update turned on lights"
+--> ===ALL===
+else
+-->["AC"] "Check required temperature"
+--> "Get current temperature"
+--> "Send command to AC to update temperature"
+--> ===ALL===
+else
+-->["Food"] "Get data about current food"
+--> "Check required food"
+if "Not enough food" then
+-->["True"] "Place order"
+--> ===ALL===
+else
+-->["False"] "Keep that in mind"
+--> ===ALL===
+endif
+else
+-->["Security"] "Check motion sensors"
+--> "Check resident location"
+--> "Check scheduled visits"
+if "smth's wrong" then
+-->["True"] "Call police"
+--> "notify resident"
+--> ===ALL===
+else 
+-->["False"] "Ok then"
+--> ===ALL===
+endif
+endif
+--> s
+
+@enduml
