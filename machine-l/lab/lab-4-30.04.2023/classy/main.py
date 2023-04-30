@@ -25,7 +25,7 @@ X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target, 
 print(X_train.shape)
 print(X_test.shape)
 
-knn = KNeighborsClassifier(n_neighbors=7)
+knn = KNeighborsClassifier(n_neighbors=3)
 
 knn.fit(X=X_train, y=y_train)
 
