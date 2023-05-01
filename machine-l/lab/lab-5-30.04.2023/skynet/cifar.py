@@ -9,6 +9,17 @@ import matplotlib.pyplot as plt
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer',
+               'dog', 'frog', 'horse', 'ship', 'truck']
+
+plt.figure(figsize=(8, 3))
+for i in range(10):
+    plt.subplot(2, 5, i + 1)
+    plt.imshow(X_train[i])
+    plt.title(class_names[y_train[i][0]])
+    plt.axis('off')
+plt.show()
+
 X_train = X_train.astype('float32') / 255
 X_test = X_test.astype('float32') / 255
 
@@ -42,12 +53,6 @@ y_pred = model.predict(X_test)
 y_pred_classes = np.argmax(y_pred, axis=1)
 y_true = np.argmax(y_test, axis=1)
 confusion_mtx = confusion_matrix(y_true, y_pred_classes)
+print(confusion_mtx)
 
-plt.imshow(confusion_mtx, interpolation='nearest', cmap=plt.cm.Blues)
-plt.title('Confusion Matrix')
-plt.colorbar()
-plt.xticks(range(10))
-plt.yticks(range(10))
-plt.ylabel('True label')
-plt.xlabel('Predicted label')
-plt.show()
+model.save('cifar.h5')
