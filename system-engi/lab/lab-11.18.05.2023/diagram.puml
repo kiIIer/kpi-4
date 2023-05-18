@@ -1,0 +1,69 @@
+@startuml
+
+class ControlUnit {
+    +smartBrewer: SmartBrewer
+    +acController: AcController
+    +lightingSystem: LightingSystem
+    +sensorSystem: SensorSystem
+    +securitySystem: SecuritySystem
+    +smartFridge: SmartFridge
+    +phoneApp: PhoneApp
+    --
+    +setTemperature(temperature)
+    +setProducts(products)
+}
+
+class SmartBrewer {
+    +brewCoffee(): Coffee
+    +brewTea(): Tea
+}
+
+class AcController {
+    +turnOn(id, temperature): Status
+    +turnOff(id, temperature): Status
+}
+
+class SensorSystem {
+    +temperatureSensors: TemperatureSensors
+    +motionSensors: MotionSensors
+}
+
+class TemperatureSensors {
+    +getTemperature(id): f32
+}
+
+class MotionSensors {
+    +isMoving(id): bool
+}
+
+class LightingSystem {
+    +turnOnLight(id): Status
+    +turnOffLight(id): Status
+}
+
+class SecuritySystem {
+    +turnOnAlarm(): Status
+    +turnOffAlarm(): Status
+    +callPolice(): Status
+}
+
+class SmartFridge {
+    +getProducts(): Products
+}
+
+class PhoneApp {
+    +getLocation(): Location
+    +notify(notification): Status
+}
+
+ControlUnit *-- SmartBrewer
+ControlUnit *-- AcController
+ControlUnit *-- SensorSystem
+ControlUnit *-- LightingSystem
+SensorSystem *-- TemperatureSensors
+SensorSystem *-- MotionSensors
+ControlUnit *-- SecuritySystem
+ControlUnit *-- SmartFridge
+PhoneApp *--* ControlUnit
+
+@enduml
