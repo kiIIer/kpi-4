@@ -1,4 +1,4 @@
-@startuml
+@startuml inner
 
 class ControlUnit {
     +smartBrewer: SmartBrewer
