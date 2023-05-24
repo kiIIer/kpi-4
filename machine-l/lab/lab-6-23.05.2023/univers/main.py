@@ -1,12 +1,13 @@
 import random
 
 import numpy as np
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 from imblearn.under_sampling import RandomUnderSampler
 import tensorflow as tf
 
 np.random.seed(1)
-size = 100
+size = 10000
 
 math = np.random.normal(175, 15, size)
 eng = np.random.normal(175, 15, size)
@@ -75,6 +76,24 @@ model.fit(train_data, train_labels, epochs=150, batch_size=50)
 
 test_loss, test_accuracy = model.evaluate(test_data, test_labels)
 
-# Print the test accuracy
+predictions = model.predict(test_data)
+predicted_labels = np.round(predictions).flatten()
+
+accuracy = accuracy_score(test_labels, predicted_labels)
+precision = precision_score(test_labels, predicted_labels)
+recall = recall_score(test_labels, predicted_labels)
+f1 = f1_score(test_labels, predicted_labels)
+
 print("Test Accuracy: {:.2f}%".format(test_accuracy * 100))
+print("Accuracy: {:.2f}%".format(accuracy * 100))
+print("Precision: {:.2f}%".format(precision * 100))
+print("Recall: {:.2f}%".format(recall * 100))
+print("F1-Score: {:.2f}%".format(f1 * 100))
+
+predictions = model.predict(test_data)
+predicted_labels = np.round(predictions).flatten()
+cm = confusion_matrix(test_labels, predicted_labels)
+print("Confusion Matrix:")
+print(cm)
+
 # model.save('univers.h5')

@@ -5,7 +5,7 @@ from keras.models import load_model
 import pandas as pd
 
 np.random.seed(1)
-size = 10
+size = 1800
 
 math = np.random.normal(175, 15, size)
 eng = np.random.normal(175, 15, size)
@@ -49,8 +49,10 @@ surnames = [
 
 students = [[random.choice(student_names), random.choice(surnames)] + student for i, student in enumerate(students)]
 
+students = [[np.round(student[2])] + student for student in students]
+
 students = np.array(students)
 
-df = pd.DataFrame(students, columns=['name', 'surname', 'chance', 'math', 'eng', 'ukr', 'benefit'])
+df = pd.DataFrame(students, columns=['passed?', 'name', 'surname', 'chance', 'math', 'eng', 'ukr', 'benefit'])
 
 df.to_excel('test.xlsx')
