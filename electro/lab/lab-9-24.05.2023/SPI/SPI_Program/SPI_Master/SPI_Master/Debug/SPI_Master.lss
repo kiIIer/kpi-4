@@ -1,0 +1,151 @@
+
+SPI_Master.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000074  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000000c8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000000c8  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000000f8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  00000134  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000005b4  00000000  00000000  00000164  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000050e  00000000  00000000  00000718  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000001ec  00000000  00000000  00000c26  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000044  00000000  00000000  00000e14  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000036c  00000000  00000000  00000e58  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000006f  00000000  00000000  000011c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000020  00000000  00000000  00001233  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	19 c0       	rjmp	.+50     	; 0x36 <__bad_interrupt>
+   4:	18 c0       	rjmp	.+48     	; 0x36 <__bad_interrupt>
+   6:	17 c0       	rjmp	.+46     	; 0x36 <__bad_interrupt>
+   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
+   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
+   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
+   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
+  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
+  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
+  14:	10 c0       	rjmp	.+32     	; 0x36 <__bad_interrupt>
+  16:	0f c0       	rjmp	.+30     	; 0x36 <__bad_interrupt>
+  18:	0e c0       	rjmp	.+28     	; 0x36 <__bad_interrupt>
+  1a:	0d c0       	rjmp	.+26     	; 0x36 <__bad_interrupt>
+  1c:	0c c0       	rjmp	.+24     	; 0x36 <__bad_interrupt>
+  1e:	0b c0       	rjmp	.+22     	; 0x36 <__bad_interrupt>
+  20:	0a c0       	rjmp	.+20     	; 0x36 <__bad_interrupt>
+  22:	09 c0       	rjmp	.+18     	; 0x36 <__bad_interrupt>
+  24:	08 c0       	rjmp	.+16     	; 0x36 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+  32:	0c d0       	rcall	.+24     	; 0x4c <main>
+  34:	1d c0       	rjmp	.+58     	; 0x70 <_exit>
+
+00000036 <__bad_interrupt>:
+  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+
+00000038 <_Z14SPI_MasterInitv>:
+#include <avr/io.h>
+#include <util/delay.h>
+
+void SPI_MasterInit(void)
+{
+	DDRB = 0b00101111; // 3.1 Програмуємо виводи MOSI та SCK, SS, виводи 0 і 1 на вихід, а інші на вхід
+  38:	8f e2       	ldi	r24, 0x2F	; 47
+  3a:	87 bb       	out	0x17, r24	; 23
+	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0); // 3.2 Дозвіл роботи SPI, режим Master, встановлення швидкості передачі (fck/16)
+  3c:	81 e5       	ldi	r24, 0x51	; 81
+  3e:	8d b9       	out	0x0d, r24	; 13
+  40:	08 95       	ret
+
+00000042 <_Z26SPI_MasterTransmit_Receivec>:
+char SPI_MasterTransmit_Receive(char cData)
+{
+	char received_Data;
+	/* Початок передачі */
+	
+	SPDR = cData; // 6.1 Запис 8 біт даних для передачі в SPDR
+  42:	8f b9       	out	0x0f, r24	; 15
+
+	while(!(SPSR & (1<<SPIF))) // 6.2 
+  44:	77 9b       	sbis	0x0e, 7	; 14
+  46:	fe cf       	rjmp	.-4      	; 0x44 <_Z26SPI_MasterTransmit_Receivec+0x2>
+	; // 6.2 Чекаємо завершення передачі
+	
+	received_Data=SPDR; // 6.3 Читання прийнятих даних з регістра SPDR
+  48:	8f b1       	in	r24, 0x0f	; 15
+	
+	return received_Data;
+}
+  4a:	08 95       	ret
+
+0000004c <main>:
+
+int main(void)
+{
+	DDRD=0x00; // 1 Програмуємо порт D на вхід.
+  4c:	11 ba       	out	0x11, r1	; 17
+	PORTD=0x00; // 1 Відключаємо внутрішні підтягуючі резисторри, оскільки вони є на схемі.
+  4e:	12 ba       	out	0x12, r1	; 18
+	
+	DDRC=0xff; // 2 Програмуємо виводи порта С на вихід.
+  50:	8f ef       	ldi	r24, 0xFF	; 255
+  52:	84 bb       	out	0x14, r24	; 20
+	PORTC=0xff; // 2 Виводи порта С встановлюємо в 1.
+  54:	85 bb       	out	0x15, r24	; 21
+	
+	SPI_MasterInit(); // 3 Налаштування моуля SPI
+  56:	f0 df       	rcall	.-32     	; 0x38 <_Z14SPI_MasterInitv>
+	char data;
+	
+    while (1) // 4
+    {
+		data = PIND; // 5 Читання даних для передачі з порту D
+  58:	80 b3       	in	r24, 0x10	; 16
+
+		char r_Data = SPI_MasterTransmit_Receive(data); // 6 Прийом/передача даних
+  5a:	f3 df       	rcall	.-26     	; 0x42 <_Z26SPI_MasterTransmit_Receivec>
+
+		PORTC = r_Data; // 7 Виведення 6 молодших біт прийнятих даних на PC0-PC5
+  5c:	85 bb       	out	0x15, r24	; 21
+
+		/* Виведення 2 старших біт прийнятих даних на PB6-PB7:*/
+		char temp = PORTB; // 7
+  5e:	98 b3       	in	r25, 0x18	; 24
+		temp &= 0b11111100; // 7
+  60:	9c 7f       	andi	r25, 0xFC	; 252
+		temp |= ((r_Data>>6) & 0b00000011); // 7
+  62:	82 95       	swap	r24
+  64:	86 95       	lsr	r24
+  66:	86 95       	lsr	r24
+  68:	83 70       	andi	r24, 0x03	; 3
+  6a:	89 2b       	or	r24, r25
+		PORTB = temp; // 7
+  6c:	88 bb       	out	0x18, r24	; 24
+  6e:	f4 cf       	rjmp	.-24     	; 0x58 <main+0xc>
+
+00000070 <_exit>:
+  70:	f8 94       	cli
+
+00000072 <__stop_program>:
+  72:	ff cf       	rjmp	.-2      	; 0x72 <__stop_program>
