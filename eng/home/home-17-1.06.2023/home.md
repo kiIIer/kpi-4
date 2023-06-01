@@ -20,6 +20,8 @@ Here is a score from Grammarly
 
 I have no idea how my Rare words meter is below average, but I hope you like this.
 
+\pagebreak
+
 ## Super Solution
 
 Dear Valeriya,
