@@ -29,7 +29,6 @@ print("Gamma: ", confidence_level)
 print(f'95% confidence interval for the mean: {confidence_interval_for_mean}')
 print(f'95% confidence interval for the standard deviation: {confidence_interval_for_std}')
 
-# Змінюємо рівень довіри
 confidence_levels = np.linspace(0.1, 0.99, 100)
 lower_bounds = []
 upper_bounds = []
@@ -51,7 +50,6 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Змінюємо розмір вибірки
 sample_sizes = range(10, 1001, 10)
 lower_bounds = []
 upper_bounds = []
@@ -73,7 +71,6 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Змінюємо рівень довіри
 lower_bounds = []
 upper_bounds = []
 
@@ -96,7 +93,6 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Змінюємо розмір вибірки
 lower_bounds = []
 upper_bounds = []
 
